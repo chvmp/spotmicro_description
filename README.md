@@ -15,3 +15,7 @@ You can view the model on rviz by running:
 You can view the model on gazebo by running:
 
     roslaunch spotmicro_description test.launch
+    
+## Task list
+- [ ] walk
+- [ ] link with recgnition
