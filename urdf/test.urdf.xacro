@@ -39,8 +39,36 @@
   <xacro:property name="shifty" value="0.036" />
 
   <!-- Macros -->
+  <!-- Gazebo -->
+  <xacro:include filename="$(find spotmicro_description)/config/gazebo_plugins.xacro" />
+  <xacro:add_gazebo_imu_sensor link_name="base_link" frame="base_link" />
+  <xacro:add_gazebo_camera pose="-${front_length + body_length/2} -0.0 -0.0 -0.0 -0.0 -0.0" xyz="-${front_length + body_length/2} -0.0 -0.0" rpy="-0.0 -0.0 -0.0" link_name="base_link" />
+  <xacro:add_gazebo_depth_camera pose="-${front_length + body_length/2} -0.0 -0.0 -0.0 -0.0 -0.0" xyz="-${front_length + body_length/2} -0.0 -0.0" rpy="-0.0 -0.0 -0.0" link_name="base_link" />
 
+  <xacro:macro name="gazebo_link_reference" params="link_name color mu1:=0.9 mu2:=0.9" >
+    <gazebo reference="${link_name}">
+      <mu1>${mu1}</mu1>
+      <mu2>${mu2}</mu2>
+      <material>Gazebo/${color}</material>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="gazebo_transmission" params="joint_name" >
+    <transmission name="${joint_name}_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${joint_name}">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${joint_name}_motor">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+  </xacro:macro>
+
+  <!-- Links -->
   <xacro:macro name="gen_shoulder" params="name left">
+    <xacro:gazebo_link_reference link_name="${name}" color="Black"/>
     <link name="${name}">
       <visual>
         <xacro:if value="${left}">
@@ -71,6 +99,7 @@
   </xacro:macro>
 
   <xacro:macro name="gen_shoulder_joint" params="pos shiftx shifty">
+    <xacro:gazebo_transmission joint_name="${pos}_shoulder"/>
     <joint name="${pos}_shoulder" type="revolute">
       <parent link="base_link"/>
       <child link="${pos}_shoulder_link"/>
@@ -82,6 +111,7 @@
   </xacro:macro>
 
   <xacro:macro name="gen_leg" params="name left">
+    <xacro:gazebo_link_reference link_name="${name}_cover" color="Yellow"/>
     <link name="${name}_cover">
       <visual>
         <xacro:if value="${left}">
@@ -99,6 +129,7 @@
         <material name="yellow"/>
       </visual>
     </link>
+    <xacro:gazebo_link_reference link_name="${name}" color="Yellow"/>
     <link name="${name}">
       <visual>
         <xacro:if value="${left}">
@@ -134,6 +165,7 @@
   </xacro:macro>
 
   <xacro:macro name="gen_leg_joint" params="pos shift">
+    <xacro:gazebo_transmission joint_name="${pos}_leg"/>
     <joint name="${pos}_leg" type="revolute">
       <parent link="${pos}_shoulder_link"/>
       <child link="${pos}_leg_link"/>
@@ -151,6 +183,7 @@
   </xacro:macro>
 
   <xacro:macro name="gen_foot" params="name left">
+    <xacro:gazebo_link_reference link_name="${name}" color="Black"/>
     <link name="${name}">
       <visual>
         <xacro:if value="${left}">
@@ -181,6 +214,7 @@
   </xacro:macro>
 
   <xacro:macro name="gen_foot_joint" params="pos">
+    <xacro:gazebo_transmission joint_name="${pos}_foot"/>
     <joint name="${pos}_foot" type="revolute">
       <parent link="${pos}_leg_link"/>
       <child link="${pos}_foot_link"/>
@@ -192,6 +226,7 @@
   </xacro:macro>
 
   <xacro:macro name="gen_toe" params="name">
+    <xacro:gazebo_link_reference link_name="${name}" color="Grey"/>
     <link name="${name}">
       <visual>
         <geometry>
@@ -235,7 +270,7 @@
   </xacro:macro>
 
   <!-- Robot Body -->
-
+  <xacro:gazebo_link_reference link_name="base_link" color="Black"/>
   <link name="base_link">
     <visual>
       <geometry>
@@ -257,7 +292,7 @@
   </link>
 
   <!-- Lidar Backpack -->
-
+  <xacro:gazebo_link_reference link_name="lidar_link" color="Black"/>
    <link name="lidar_link">
     <visual>
       <geometry>
@@ -280,9 +315,42 @@
   <joint name="base_lidar" type="fixed">
     <parent link="base_link"/>
     <child link="lidar_link"/>
-        <origin xyz="0 0 ${body_height/2}"/>
+    <origin xyz="0 0 ${body_height/2}"/>
   </joint>
+  <gazebo reference="lidar_link">
+      <material>Gazebo/Black</material>
+      <sensor type="ray" name="lidar">
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>false</visualize>
+        <update_rate>10</update_rate>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>400</samples>
+              <resolution>1</resolution>
+              <min_angle>${-pi}</min_angle>
+              <max_angle>${pi}</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.50</min>
+            <max>100.0</max>
+            <resolution>0.01</resolution>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <mean>0.0</mean>
+            <stddev>0.01</stddev>
+          </noise>
+        </ray>
+        <plugin name="gazebo_ros_lidar_controller" filename="libgazebo_ros_laser.so">
+          <topicname>lidar_link/scan</topicname>
+          <frameName>lidar_link</frameName>
+        </plugin>
+      </sensor>
+    </gazebo>
 
+  <xacro:gazebo_link_reference link_name="rear_link" color="Yellow"/>
   <link name="rear_link">
     <visual>
       <geometry>
@@ -307,6 +375,7 @@
     <child link="rear_link"/>
   </joint>
 
+  <xacro:gazebo_link_reference link_name="front_link" color="Yellow"/>
   <link name="front_link">
     <visual>
       <geometry>
@@ -338,5 +407,13 @@
   <xacro:gen_full_leg_joint pos="front_right" shiftx="-${shiftx}" shifty="${shifty}" shift="${shift}" left="false"/>
   <xacro:gen_full_leg_joint pos="rear_left" shiftx="${shiftx}" shifty="-${shifty}" shift="-${shift}" left="true"/>
   <xacro:gen_full_leg_joint pos="rear_right" shiftx="${shiftx}" shifty="${shifty}" shift="${shift}" left="false"/>
+
+  <!-- Gazebo plugin for ROS Control -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    </plugin>
+  </gazebo>
 
 </robot>
