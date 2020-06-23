@@ -6,6 +6,10 @@ The meshes' path have been modified so the models can be located using its packa
 
 ## Quick Start
 
-You can view the model by running:
+You can view the model on rviz by running:
 
     roslaunch spotmicro_description view_urdf.launch 
+
+You can view the model on gazebo by running:
+
+    roslaunch spotmicro_description test.launch
