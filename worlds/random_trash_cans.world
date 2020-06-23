@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <world name="default">
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <!-- A ground plane-->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <!-- Automatic population of objects -->
+    <population name="trash_can_population">
+      <model name=trash_can>
+        <include>
+          <static>true</static>
+          <uri>model://first_2015_trash_can</uri>
+        </include>
+      </model>
+      <pose>0 0 0 0 0 0</pose>
+      <box>
+        <size>10 10 0.05</size>
+      </box>
+      <model_count>10</model_count>
+      <distribution>
+        <type>random</type>
+      </distribution>
+    </population>
+  </world>
+</sdf>
