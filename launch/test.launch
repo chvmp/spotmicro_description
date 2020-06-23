@@ -1,0 +1,41 @@
+<launch>
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find spotmicro_description)/urdf/test.urdf.xacro' " />
+    <arg name="paused" default="false" />
+    <!--arg name="gzangles" default="-J JOINT0 -0.2" / use with paused -->
+    <arg name="gzangles" default="" />
+    <arg name="gzpose" default="-z 0.3 -Y 3.14152" />
+    <arg name="control_config" default="$(find spotmicro_description)/config/test.urdf.gz_controller.yaml" />
+
+    <!-- Gazebo world -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch" >
+      <arg name="paused" value="$(arg paused)" />
+      <!--<arg name="world_name" value="$(find robot_assembler)/world/random_trash_cans.world" />-->
+    </include>
+
+    <!-- load Gazebo-->
+    <node pkg="gazebo_ros" type="spawn_model" name="urdf_spawner"
+        respawn="false" output="screen"
+        args="$(arg gzangles) $(arg gzpose) -urdf -model AssembledRobot -param robot_description" />
+
+    <!-- load rviz -->
+    <node type="rviz" name="rviz" pkg="rviz" args="-d $(find spotmicro_description)/rviz/urdf_viewer.rviz" />
+
+    <!-- convert joint states to TF transfors -->
+    <node name="champ_robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+        <param name="publish_frequency" type="double" value="30.0" />
+        <param name="ignore_timestamp" type="bool" value="true" />
+    </node>
+
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="/use_gui" value="false"/>
+        <rosparam param="/source_list">[champ/joint_states]</rosparam>
+    </node>
+
+    <!-- load the controllers -->
+    <rosparam file="$(arg control_config)" command="load" />
+    <node name="controller_spawner" pkg="controller_manager"
+      type="spawner" respawn="false" output="screen"
+      args="--shutdown-timeout 0.1
+            joint_state_controller
+            fullbody_controller" />
+</launch>
