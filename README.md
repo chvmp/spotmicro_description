@@ -4,7 +4,7 @@ A minimal and revamped version of [SpotMicroAI](https://spotmicroai.readthedocs.
 
 The meshes' path have been modified so the models can be located using its package name.
 
-(./image/spotmicro.png)
+![spotmicro](./image/spotmicro.png)
 
 ## Quick Start
 
