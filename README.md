@@ -4,11 +4,13 @@ A minimal and revamped version of [SpotMicroAI](https://spotmicroai.readthedocs.
 
 The meshes' path have been modified so the models can be located using its package name.
 
+(./image/spotmicro.png)
+
 ## Quick Start
 
 You can view the model on rviz by running:
 
-    roslaunch spotmicro_description view_urdf.launch 
+    roslaunch spotmicro_description view_urdf.launch
 
 You can view the model on gazebo by running:
 
