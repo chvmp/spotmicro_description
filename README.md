@@ -15,6 +15,11 @@ You can view the model on rviz by running:
 You can view the model on gazebo by running:
 
     roslaunch spotmicro_description test.launch
+  
+You can view the model on pybullet by runnning:
+
+    cd ./pybullet
+    python test_loadurdf.py
     
 ## Task list
 - [ ] walk
