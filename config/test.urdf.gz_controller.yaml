@@ -31,3 +31,18 @@ fullbody_controller:
     rear_right_shoulder: {p: 250, i: 0, d: 0}
     rear_right_leg: {p: 250, i: 0, d: 0}
     rear_right_foot: {p: 250, i: 0, d: 0}
+
+gazebo_ros_control:
+  pid_gains:
+    front_left_shoulder: {p: 250, i: 0, d: 0}
+    front_left_leg: {p: 250, i: 0, d: 0}
+    front_left_foot: {p: 250, i: 0, d: 0}
+    front_right_shoulder: {p: 250, i: 0, d: 0}
+    front_right_leg: {p: 250, i: 0, d: 0}
+    front_right_foot: {p: 250, i: 0, d: 0}
+    rear_left_shoulder: {p: 250, i: 0, d: 0}
+    rear_left_leg: {p: 250, i: 0, d: 0}
+    rear_left_foot: {p: 250, i: 0, d: 0}
+    rear_right_shoulder: {p: 250, i: 0, d: 0}
+    rear_right_leg: {p: 250, i: 0, d: 0}
+    rear_right_foot: {p: 250, i: 0, d: 0}
