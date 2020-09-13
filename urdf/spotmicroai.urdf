@@ -13,98 +13,70 @@
   <material name="grey">
     <color rgba="0.6 0.6 0.6 1"/>
   </material>
-  <!-- Params -->
-  <!-- Macros -->
   <!-- Robot Body -->
-  <link name="base_link">
+  <link name="base_link"/>
+  <link name="base_inertia">
     <visual>
       <geometry>
         <mesh filename="package://spotmicro_description/meshes/stl/mainbody.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="black"/>
-      <origin rpy="0 0 0" xyz="-0.045 -0.060 -0.015"/>
+      <origin rpy="0 0 3.1416" xyz="0.0425 0.055 -0.02"/>
     </visual>
     <collision>
       <geometry>
         <box size="0.14 0.11 0.07"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 3.1416" xyz="0 0 0"/>
     </collision>
     <inertial>
       <mass value="2.80"/>
       <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100"/>
     </inertial>
   </link>
-  <gazebo reference="base_link">
-    <material>Gazebo/FlatBlack</material>
-  </gazebo>
-  <!-- Lidar Backpack -->
-  <link name="lidar_link">
-    <visual>
-      <geometry>
-        <mesh filename="package://spotmicro_description/meshes/stl/rplidar_main.STL" scale="0.001 0.001 0.001"/>
-      </geometry>
-      <material name="black"/>
-      <origin rpy="1.57075 0 0" xyz="-0.06425 0.02885 0"/>
-    </visual>
-    <collision>
-      <geometry>
-        <box size="0.0985 0.0577 0.07"/>
-      </geometry>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-    </collision>
-    <inertial>
-      <mass value="0.50"/>
-      <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100"/>
-    </inertial>
-  </link>
-  <gazebo reference="lidar_link">
-    <material>Gazebo/FlatBlack</material>
-  </gazebo>
-  <joint name="base_lidar" type="fixed">
+  <joint name="base_inertia_joint" type="fixed">
     <parent link="base_link"/>
-    <child link="lidar_link"/>
-    <origin xyz="0 0 0.035"/>
+    <child link="base_inertia"/>
   </joint>
   <link name="rear_link">
     <visual>
       <geometry>
         <mesh filename="package://spotmicro_description/meshes/stl/backpart.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="-0.040 -0.060 -0.0140"/>
+      <origin rpy="0 0 3.1416" xyz="0.042 0.055 -0.0195"/>
       <material name="yellow"/>
     </visual>
     <collision>
       <geometry>
         <box size="0.04 0.11 0.07"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0.135 0 0"/>
+      <origin rpy="0 0 0" xyz="-0.135 0 0"/>
     </collision>
     <inertial>
       <mass value="0.20"/>
       <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100"/>
     </inertial>
   </link>
-  <gazebo reference="rear_link">
-    <material>Gazebo/ZincYellow</material>
-  </gazebo>
   <joint name="base_rear" type="fixed">
     <parent link="base_link"/>
     <child link="rear_link"/>
   </joint>
+  <gazebo reference="rear_link">
+    <material>Gazebo/ZincYellow</material>
+  </gazebo>
   <link name="front_link">
     <visual>
       <geometry>
         <mesh filename="package://spotmicro_description/meshes/stl/frontpart.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="-0.040 -0.060 -0.0140"/>
+      <origin rpy="0 0 3.1416" xyz="0.042 0.055 -0.0205"/>
       <material name="yellow"/>
     </visual>
     <collision>
       <geometry>
         <box size="0.058 0.11 0.07"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="-0.145 0 0"/>
+      <origin rpy="0 0 0" xyz="0.135 0 0"/>
     </collision>
     <inertial>
       <mass value="0.20"/>
@@ -118,13 +90,12 @@
     <parent link="base_link"/>
     <child link="front_link"/>
   </joint>
-  <!-- create Legs -->
   <link name="front_left_shoulder_link">
     <visual>
       <geometry>
         <mesh filename="package://spotmicro_description/meshes/stl/lshoulder.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="-0.135 -0.02 -0.01"/>
+      <origin rpy="0 0 3.1416" xyz="0.135 0.0163 -0.0195"/>
       <material name="black"/>
     </visual>
     <collision>
@@ -138,33 +109,27 @@
       <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100"/>
     </inertial>
   </link>
-  <gazebo reference="front_left_shoulder_link">
-    <material>Gazebo/FlatBlack</material>
-  </gazebo>
   <link name="front_left_leg_link_cover">
     <visual>
       <geometry>
         <mesh filename="package://spotmicro_description/meshes/stl/larm_cover.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="-0.125 0.04 -0.02"/>
+      <origin rpy="0 0 3.1416" xyz="0.134 -0.04 -0.0095"/>
       <material name="yellow"/>
     </visual>
   </link>
-  <gazebo reference="front_left_leg_link_cover">
-    <material>Gazebo/ZincYellow</material>
-  </gazebo>
   <link name="front_left_leg_link">
     <visual>
       <geometry>
         <mesh filename="package://spotmicro_description/meshes/stl/larm.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="-0.125 0.04 -0.02"/>
+      <origin rpy="0 0 3.1416" xyz="0.134 -0.04 -0.0095"/>
       <material name="black"/>
     </visual>
     <collision>
       <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.050"/>
       <geometry>
-        <box size="0.028 0.036 0.12"/>
+        <box size="0.028 0.036 0.109"/>
       </geometry>
     </collision>
     <inertial>
@@ -172,20 +137,20 @@
       <inertia ixx="1000" ixy="0" ixz="0" iyy="1000" iyz="0" izz="1000"/>
     </inertial>
   </link>
-  <gazebo reference="front_left_leg_link">
-    <material>Gazebo/FlatBlack</material>
+  <gazebo reference="front_left_leg_link_cover">
+    <material>Gazebo/ZincYellow</material>
   </gazebo>
   <link name="front_left_foot_link">
     <visual>
       <geometry>
         <mesh filename="package://spotmicro_description/meshes/stl/lfoot.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="-0.120 0.04 0.1"/>
+      <origin rpy="0 0 3.1416 " xyz="0.1195 -0.04 0.099"/>
       <material name="black"/>
     </visual>
     <collision>
       <geometry>
-        <box size="0.026 0.020 0.115"/>
+        <box size="0.026 0.020 0.13"/>
       </geometry>
       <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.050"/>
     </collision>
@@ -194,15 +159,12 @@
       <inertia ixx="1000" ixy="0" ixz="0" iyy="1000" iyz="0" izz="1000"/>
     </inertial>
   </link>
-  <gazebo reference="front_left_foot_link">
-    <material>Gazebo/FlatBlack</material>
-  </gazebo>
   <link name="front_left_toe_link">
     <visual>
       <geometry>
         <mesh filename="package://spotmicro_description/meshes/stl/foot.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <origin rpy="0 -0.40010 0" xyz="0 -0.01 0"/>
+      <origin rpy="0 0.40010 0" xyz="0 -0.01 0.015"/>
       <material name="grey"/>
     </visual>
     <collision>
@@ -217,14 +179,11 @@
       <inertia ixx="1000" ixy="0" ixz="0" iyy="1000" iyz="0" izz="1000"/>
     </inertial>
   </link>
-  <gazebo reference="front_left_toe_link">
-    <material>Gazebo/Grey</material>
-  </gazebo>
   <joint name="front_left_shoulder" type="revolute">
     <parent link="base_link"/>
     <child link="front_left_shoulder_link"/>
     <axis xyz="1 0 0"/>
-    <origin rpy="0 0 0" xyz="-0.093 -0.036 0"/>
+    <origin rpy="0 0 0" xyz="0.093 0.0395 0"/>
     <limit effort="1000.0" lower="-0.548" upper="0.548" velocity="0.7"/>
     <dynamics damping="0.0" friction="0.5"/>
   </joint>
@@ -232,7 +191,7 @@
     <parent link="front_left_shoulder_link"/>
     <child link="front_left_leg_link"/>
     <axis xyz="0 1 0"/>
-    <origin rpy="0 0 0" xyz="0 -0.052 0"/>
+    <origin rpy="0 0 0" xyz="0 0.055 0"/>
     <limit effort="1000.0" lower="-2.666" upper="1.548" velocity="0.5"/>
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
@@ -245,21 +204,21 @@
     <parent link="front_left_leg_link"/>
     <child link="front_left_foot_link"/>
     <axis xyz="0 1 0"/>
-    <origin rpy="0 0 0" xyz="-0.01 0 -0.12"/>
+    <origin rpy="0 0 0" xyz="0.014 0 -0.109"/>
     <limit effort="1000.0" lower="-0.1" upper="2.59" velocity="0.5"/>
     <dynamics damping="0.0" friction="0.5"/>
   </joint>
   <joint name="front_left_toe" type="fixed">
     <parent link="front_left_foot_link"/>
     <child link="front_left_toe_link"/>
-    <origin xyz="0 0 -0.115"/>
+    <origin xyz="0 0 -0.13"/>
   </joint>
   <link name="front_right_shoulder_link">
     <visual>
       <geometry>
         <mesh filename="package://spotmicro_description/meshes/stl/rshoulder.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="-0.135 -0.09 -0.01"/>
+      <origin rpy="0 0 3.1416" xyz="0.135 0.0938 -0.0205"/>
       <material name="black"/>
     </visual>
     <collision>
@@ -273,33 +232,27 @@
       <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100"/>
     </inertial>
   </link>
-  <gazebo reference="front_right_shoulder_link">
-    <material>Gazebo/FlatBlack</material>
-  </gazebo>
   <link name="front_right_leg_link_cover">
     <visual>
       <geometry>
         <mesh filename="package://spotmicro_description/meshes/stl/rarm_cover.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="-0.125 -0.15 -0.02"/>
+      <origin rpy="0 0 3.1416" xyz="0.134 0.149 -0.0095"/>
       <material name="yellow"/>
     </visual>
   </link>
-  <gazebo reference="front_right_leg_link_cover">
-    <material>Gazebo/ZincYellow</material>
-  </gazebo>
   <link name="front_right_leg_link">
     <visual>
       <geometry>
         <mesh filename="package://spotmicro_description/meshes/stl/rarm.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="-0.125 -0.15 -0.02"/>
+      <origin rpy="0 0 3.1416" xyz="0.134 0.149 -0.0095"/>
       <material name="black"/>
     </visual>
     <collision>
       <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.050"/>
       <geometry>
-        <box size="0.028 0.036 0.12"/>
+        <box size="0.028 0.036 0.109"/>
       </geometry>
     </collision>
     <inertial>
@@ -307,20 +260,20 @@
       <inertia ixx="1000" ixy="0" ixz="0" iyy="1000" iyz="0" izz="1000"/>
     </inertial>
   </link>
-  <gazebo reference="front_right_leg_link">
-    <material>Gazebo/FlatBlack</material>
+  <gazebo reference="front_right_leg_link_cover">
+    <material>Gazebo/ZincYellow</material>
   </gazebo>
   <link name="front_right_foot_link">
     <visual>
       <geometry>
         <mesh filename="package://spotmicro_description/meshes/stl/rfoot.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="-0.120 -0.15 0.1"/>
+      <origin rpy="0 0 3.1416" xyz="0.1195 0.149 0.099"/>
       <material name="black"/>
     </visual>
     <collision>
       <geometry>
-        <box size="0.026 0.020 0.115"/>
+        <box size="0.026 0.020 0.13"/>
       </geometry>
       <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.050"/>
     </collision>
@@ -329,15 +282,12 @@
       <inertia ixx="1000" ixy="0" ixz="0" iyy="1000" iyz="0" izz="1000"/>
     </inertial>
   </link>
-  <gazebo reference="front_right_foot_link">
-    <material>Gazebo/FlatBlack</material>
-  </gazebo>
   <link name="front_right_toe_link">
     <visual>
       <geometry>
         <mesh filename="package://spotmicro_description/meshes/stl/foot.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <origin rpy="0 -0.40010 0" xyz="0 -0.01 0"/>
+      <origin rpy="0 0.40010 0" xyz="0 -0.01 0.015"/>
       <material name="grey"/>
     </visual>
     <collision>
@@ -352,14 +302,11 @@
       <inertia ixx="1000" ixy="0" ixz="0" iyy="1000" iyz="0" izz="1000"/>
     </inertial>
   </link>
-  <gazebo reference="front_right_toe_link">
-    <material>Gazebo/Grey</material>
-  </gazebo>
   <joint name="front_right_shoulder" type="revolute">
     <parent link="base_link"/>
     <child link="front_right_shoulder_link"/>
     <axis xyz="1 0 0"/>
-    <origin rpy="0 0 0" xyz="-0.093 0.036 0"/>
+    <origin rpy="0 0 0" xyz="0.093 -0.0395 0"/>
     <limit effort="1000.0" lower="-0.548" upper="0.548" velocity="0.7"/>
     <dynamics damping="0.0" friction="0.5"/>
   </joint>
@@ -367,7 +314,7 @@
     <parent link="front_right_shoulder_link"/>
     <child link="front_right_leg_link"/>
     <axis xyz="0 1 0"/>
-    <origin rpy="0 0 0" xyz="0 0.052 0"/>
+    <origin rpy="0 0 0" xyz="0 -0.055 0"/>
     <limit effort="1000.0" lower="-2.666" upper="1.548" velocity="0.5"/>
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
@@ -380,21 +327,21 @@
     <parent link="front_right_leg_link"/>
     <child link="front_right_foot_link"/>
     <axis xyz="0 1 0"/>
-    <origin rpy="0 0 0" xyz="-0.01 0 -0.12"/>
+    <origin rpy="0 0 0" xyz="0.014 0 -0.109"/>
     <limit effort="1000.0" lower="-0.1" upper="2.59" velocity="0.5"/>
     <dynamics damping="0.0" friction="0.5"/>
   </joint>
   <joint name="front_right_toe" type="fixed">
     <parent link="front_right_foot_link"/>
     <child link="front_right_toe_link"/>
-    <origin xyz="0 0 -0.115"/>
+    <origin xyz="0 0 -0.13"/>
   </joint>
   <link name="rear_left_shoulder_link">
     <visual>
       <geometry>
         <mesh filename="package://spotmicro_description/meshes/stl/lshoulder.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="-0.135 -0.02 -0.01"/>
+      <origin rpy="0 0 3.1416" xyz="0.135 0.0163 -0.0195"/>
       <material name="black"/>
     </visual>
     <collision>
@@ -408,33 +355,27 @@
       <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100"/>
     </inertial>
   </link>
-  <gazebo reference="rear_left_shoulder_link">
-    <material>Gazebo/FlatBlack</material>
-  </gazebo>
   <link name="rear_left_leg_link_cover">
     <visual>
       <geometry>
         <mesh filename="package://spotmicro_description/meshes/stl/larm_cover.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="-0.125 0.04 -0.02"/>
+      <origin rpy="0 0 3.1416" xyz="0.134 -0.04 -0.0095"/>
       <material name="yellow"/>
     </visual>
   </link>
-  <gazebo reference="rear_left_leg_link_cover">
-    <material>Gazebo/ZincYellow</material>
-  </gazebo>
   <link name="rear_left_leg_link">
     <visual>
       <geometry>
         <mesh filename="package://spotmicro_description/meshes/stl/larm.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="-0.125 0.04 -0.02"/>
+      <origin rpy="0 0 3.1416" xyz="0.134 -0.04 -0.0095"/>
       <material name="black"/>
     </visual>
     <collision>
       <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.050"/>
       <geometry>
-        <box size="0.028 0.036 0.12"/>
+        <box size="0.028 0.036 0.109"/>
       </geometry>
     </collision>
     <inertial>
@@ -442,20 +383,20 @@
       <inertia ixx="1000" ixy="0" ixz="0" iyy="1000" iyz="0" izz="1000"/>
     </inertial>
   </link>
-  <gazebo reference="rear_left_leg_link">
-    <material>Gazebo/FlatBlack</material>
+  <gazebo reference="rear_left_leg_link_cover">
+    <material>Gazebo/ZincYellow</material>
   </gazebo>
   <link name="rear_left_foot_link">
     <visual>
       <geometry>
         <mesh filename="package://spotmicro_description/meshes/stl/lfoot.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="-0.120 0.04 0.1"/>
+      <origin rpy="0 0 3.1416 " xyz="0.1195 -0.04 0.099"/>
       <material name="black"/>
     </visual>
     <collision>
       <geometry>
-        <box size="0.026 0.020 0.115"/>
+        <box size="0.026 0.020 0.13"/>
       </geometry>
       <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.050"/>
     </collision>
@@ -464,15 +405,12 @@
       <inertia ixx="1000" ixy="0" ixz="0" iyy="1000" iyz="0" izz="1000"/>
     </inertial>
   </link>
-  <gazebo reference="rear_left_foot_link">
-    <material>Gazebo/FlatBlack</material>
-  </gazebo>
   <link name="rear_left_toe_link">
     <visual>
       <geometry>
         <mesh filename="package://spotmicro_description/meshes/stl/foot.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <origin rpy="0 -0.40010 0" xyz="0 -0.01 0"/>
+      <origin rpy="0 0.40010 0" xyz="0 -0.01 0.015"/>
       <material name="grey"/>
     </visual>
     <collision>
@@ -487,14 +425,11 @@
       <inertia ixx="1000" ixy="0" ixz="0" iyy="1000" iyz="0" izz="1000"/>
     </inertial>
   </link>
-  <gazebo reference="rear_left_toe_link">
-    <material>Gazebo/Grey</material>
-  </gazebo>
   <joint name="rear_left_shoulder" type="revolute">
     <parent link="base_link"/>
     <child link="rear_left_shoulder_link"/>
     <axis xyz="1 0 0"/>
-    <origin rpy="0 0 0" xyz="0.093 -0.036 0"/>
+    <origin rpy="0 0 0" xyz="-0.093 0.0395 0"/>
     <limit effort="1000.0" lower="-0.548" upper="0.548" velocity="0.7"/>
     <dynamics damping="0.0" friction="0.5"/>
   </joint>
@@ -502,7 +437,7 @@
     <parent link="rear_left_shoulder_link"/>
     <child link="rear_left_leg_link"/>
     <axis xyz="0 1 0"/>
-    <origin rpy="0 0 0" xyz="0 -0.052 0"/>
+    <origin rpy="0 0 0" xyz="0 0.055 0"/>
     <limit effort="1000.0" lower="-2.666" upper="1.548" velocity="0.5"/>
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
@@ -515,21 +450,21 @@
     <parent link="rear_left_leg_link"/>
     <child link="rear_left_foot_link"/>
     <axis xyz="0 1 0"/>
-    <origin rpy="0 0 0" xyz="-0.01 0 -0.12"/>
+    <origin rpy="0 0 0" xyz="0.014 0 -0.109"/>
     <limit effort="1000.0" lower="-0.1" upper="2.59" velocity="0.5"/>
     <dynamics damping="0.0" friction="0.5"/>
   </joint>
   <joint name="rear_left_toe" type="fixed">
     <parent link="rear_left_foot_link"/>
     <child link="rear_left_toe_link"/>
-    <origin xyz="0 0 -0.115"/>
+    <origin xyz="0 0 -0.13"/>
   </joint>
   <link name="rear_right_shoulder_link">
     <visual>
       <geometry>
         <mesh filename="package://spotmicro_description/meshes/stl/rshoulder.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="-0.135 -0.09 -0.01"/>
+      <origin rpy="0 0 3.1416" xyz="0.135 0.0938 -0.0205"/>
       <material name="black"/>
     </visual>
     <collision>
@@ -543,33 +478,27 @@
       <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100"/>
     </inertial>
   </link>
-  <gazebo reference="rear_right_shoulder_link">
-    <material>Gazebo/FlatBlack</material>
-  </gazebo>
   <link name="rear_right_leg_link_cover">
     <visual>
       <geometry>
         <mesh filename="package://spotmicro_description/meshes/stl/rarm_cover.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="-0.125 -0.15 -0.02"/>
+      <origin rpy="0 0 3.1416" xyz="0.134 0.149 -0.0095"/>
       <material name="yellow"/>
     </visual>
   </link>
-  <gazebo reference="rear_right_leg_link_cover">
-    <material>Gazebo/ZincYellow</material>
-  </gazebo>
   <link name="rear_right_leg_link">
     <visual>
       <geometry>
         <mesh filename="package://spotmicro_description/meshes/stl/rarm.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="-0.125 -0.15 -0.02"/>
+      <origin rpy="0 0 3.1416" xyz="0.134 0.149 -0.0095"/>
       <material name="black"/>
     </visual>
     <collision>
       <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.050"/>
       <geometry>
-        <box size="0.028 0.036 0.12"/>
+        <box size="0.028 0.036 0.109"/>
       </geometry>
     </collision>
     <inertial>
@@ -577,20 +506,20 @@
       <inertia ixx="1000" ixy="0" ixz="0" iyy="1000" iyz="0" izz="1000"/>
     </inertial>
   </link>
-  <gazebo reference="rear_right_leg_link">
-    <material>Gazebo/FlatBlack</material>
+  <gazebo reference="rear_right_leg_link_cover">
+    <material>Gazebo/ZincYellow</material>
   </gazebo>
   <link name="rear_right_foot_link">
     <visual>
       <geometry>
         <mesh filename="package://spotmicro_description/meshes/stl/rfoot.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="-0.120 -0.15 0.1"/>
+      <origin rpy="0 0 3.1416" xyz="0.1195 0.149 0.099"/>
       <material name="black"/>
     </visual>
     <collision>
       <geometry>
-        <box size="0.026 0.020 0.115"/>
+        <box size="0.026 0.020 0.13"/>
       </geometry>
       <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.050"/>
     </collision>
@@ -599,15 +528,12 @@
       <inertia ixx="1000" ixy="0" ixz="0" iyy="1000" iyz="0" izz="1000"/>
     </inertial>
   </link>
-  <gazebo reference="rear_right_foot_link">
-    <material>Gazebo/FlatBlack</material>
-  </gazebo>
   <link name="rear_right_toe_link">
     <visual>
       <geometry>
         <mesh filename="package://spotmicro_description/meshes/stl/foot.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <origin rpy="0 -0.40010 0" xyz="0 -0.01 0"/>
+      <origin rpy="0 0.40010 0" xyz="0 -0.01 0.015"/>
       <material name="grey"/>
     </visual>
     <collision>
@@ -622,14 +548,11 @@
       <inertia ixx="1000" ixy="0" ixz="0" iyy="1000" iyz="0" izz="1000"/>
     </inertial>
   </link>
-  <gazebo reference="rear_right_toe_link">
-    <material>Gazebo/Grey</material>
-  </gazebo>
   <joint name="rear_right_shoulder" type="revolute">
     <parent link="base_link"/>
     <child link="rear_right_shoulder_link"/>
     <axis xyz="1 0 0"/>
-    <origin rpy="0 0 0" xyz="0.093 0.036 0"/>
+    <origin rpy="0 0 0" xyz="-0.093 -0.0395 0"/>
     <limit effort="1000.0" lower="-0.548" upper="0.548" velocity="0.7"/>
     <dynamics damping="0.0" friction="0.5"/>
   </joint>
@@ -637,7 +560,7 @@
     <parent link="rear_right_shoulder_link"/>
     <child link="rear_right_leg_link"/>
     <axis xyz="0 1 0"/>
-    <origin rpy="0 0 0" xyz="0 0.052 0"/>
+    <origin rpy="0 0 0" xyz="0 -0.055 0"/>
     <limit effort="1000.0" lower="-2.666" upper="1.548" velocity="0.5"/>
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
@@ -650,14 +573,14 @@
     <parent link="rear_right_leg_link"/>
     <child link="rear_right_foot_link"/>
     <axis xyz="0 1 0"/>
-    <origin rpy="0 0 0" xyz="-0.01 0 -0.12"/>
+    <origin rpy="0 0 0" xyz="0.014 0 -0.109"/>
     <limit effort="1000.0" lower="-0.1" upper="2.59" velocity="0.5"/>
     <dynamics damping="0.0" friction="0.5"/>
   </joint>
   <joint name="rear_right_toe" type="fixed">
     <parent link="rear_right_foot_link"/>
     <child link="rear_right_toe_link"/>
-    <origin xyz="0 0 -0.115"/>
+    <origin xyz="0 0 -0.13"/>
   </joint>
 </robot>
 
