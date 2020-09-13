@@ -68,6 +68,9 @@
         <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
       </inertial>
     </link>
+    <gazebo reference="${name}">
+      <material>Gazebo/FlatBlack</material>
+    </gazebo>
   </xacro:macro>
 
   <xacro:macro name="gen_shoulder_joint" params="pos shiftx shifty">
@@ -99,6 +102,9 @@
         <material name="yellow"/>
       </visual>
     </link>
+    <gazebo reference="${name}_cover">
+      <material>Gazebo/ZincYellow</material>
+    </gazebo>
     <link name="${name}">
       <visual>
         <xacro:if value="${left}">
@@ -114,11 +120,6 @@
         <origin rpy="0 0 0" xyz="-0.125 -0.15 -0.02"/>
         </xacro:unless>
         <material name="black"/>
-<!--        <geometry>
-          <box size="0.028 0.036 ${leg_length}"/>
-        </geometry>
-        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.050"/>
-        <material name="yellow"/>-->
       </visual>
       <collision>
         <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.050"/>
@@ -131,6 +132,9 @@
         <inertia ixx="1000" ixy="0" ixz="0" iyy="1000" iyz="0" izz="1000" />
       </inertial>
     </link>
+    <gazebo reference="${name}">
+      <material>Gazebo/FlatBlack</material>
+    </gazebo>
   </xacro:macro>
 
   <xacro:macro name="gen_leg_joint" params="pos shift">
@@ -144,10 +148,10 @@
     </joint>
 
     <joint name="${pos}_leg_cover_joint" type="fixed">
-    <parent link="${pos}_leg_link"/>
-    <child link="${pos}_leg_link_cover"/>
-        <origin xyz="0 0 0"/>
-  </joint>  
+      <parent link="${pos}_leg_link"/>
+      <child link="${pos}_leg_link_cover"/>
+      <origin xyz="0 0 0"/>
+    </joint>
   </xacro:macro>
 
   <xacro:macro name="gen_foot" params="name left">
@@ -178,6 +182,9 @@
         <inertia ixx="1000" ixy="0" ixz="0" iyy="1000" iyz="0" izz="1000" />
       </inertial>
     </link>
+    <gazebo reference="${name}">
+      <material>Gazebo/FlatBlack</material>
+    </gazebo>
   </xacro:macro>
 
   <xacro:macro name="gen_foot_joint" params="pos">
@@ -212,6 +219,9 @@
         <inertia ixx="1000" ixy="0" ixz="0" iyy="1000" iyz="0" izz="1000" />
       </inertial>
     </link>
+    <gazebo reference="${name}">
+      <material>Gazebo/Grey</material>
+    </gazebo>
   </xacro:macro>
 
  <xacro:macro name="gen_toe_joint" params="pos">
@@ -241,7 +251,7 @@
       <geometry>
         <mesh filename="package://spotmicro_description/meshes/stl/mainbody.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="black"/> 
+      <material name="black"/>
       <origin rpy="0 0 0" xyz="-0.045 -0.060 -0.015"/>
     </visual>
     <collision>
@@ -255,6 +265,9 @@
       <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
     </inertial>
   </link>
+  <gazebo reference="base_link">
+    <material>Gazebo/FlatBlack</material>
+  </gazebo>
 
   <!-- Lidar Backpack -->
 
@@ -263,7 +276,7 @@
       <geometry>
         <mesh filename="package://spotmicro_description/meshes/stl/rplidar_main.STL" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="black"/> 
+      <material name="black"/>
       <origin rpy="1.57075 0 0" xyz="${-lidar_length/2-0.015} ${lidar_width/2} 0"/>
     </visual>
     <collision>
@@ -277,11 +290,14 @@
       <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
     </inertial>
   </link>
+  <gazebo reference="lidar_link">
+    <material>Gazebo/FlatBlack</material>
+  </gazebo>
   <joint name="base_lidar" type="fixed">
     <parent link="base_link"/>
     <child link="lidar_link"/>
         <origin xyz="0 0 ${body_height/2}"/>
-  </joint>  
+  </joint>
 
   <link name="rear_link">
     <visual>
@@ -302,6 +318,9 @@
       <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
     </inertial>
   </link>
+  <gazebo reference="rear_link">
+    <material>Gazebo/ZincYellow</material>
+  </gazebo>
   <joint name="base_rear" type="fixed">
     <parent link="base_link"/>
     <child link="rear_link"/>
@@ -325,8 +344,10 @@
       <mass value="0.20"/>
       <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
     </inertial>
-
   </link>
+  <gazebo reference="front_link">
+    <material>Gazebo/ZincYellow</material>
+  </gazebo>
   <joint name="base_front" type="fixed">
     <parent link="base_link"/>
     <child link="front_link"/>
