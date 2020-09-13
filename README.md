@@ -8,4 +8,10 @@ The meshes' path have been modified so the models can be located using its packa
 
 You can view the model by running:
 
-    roslaunch spotmicro_description view_urdf.launch 
+    roslaunch spotmicro_description view_urdf.launch
+
+## Testing
+
+You can modify the Xacro description and see the changes in the UDF file with this command:
+
+    rosrun xacro xacro spotmicroai.urdf.xacro > spotmicroai.urdf
