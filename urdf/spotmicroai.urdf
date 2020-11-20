@@ -187,6 +187,16 @@
     <limit effort="1000.0" lower="-0.548" upper="0.548" velocity="0.7"/>
     <dynamics damping="0.0" friction="0.5"/>
   </joint>
+  <transmission name="front_left_shoulder_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="front_left_shoulder">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="front_left_shoulder_actuator">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
   <joint name="front_left_leg" type="revolute">
     <parent link="front_left_shoulder_link"/>
     <child link="front_left_leg_link"/>
@@ -195,6 +205,16 @@
     <limit effort="1000.0" lower="-2.666" upper="1.548" velocity="0.5"/>
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
+  <transmission name="front_left_leg_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="front_left_leg">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="front_left_leg_actuator">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
   <joint name="front_left_leg_cover_joint" type="fixed">
     <parent link="front_left_leg_link"/>
     <child link="front_left_leg_link_cover"/>
@@ -205,9 +225,19 @@
     <child link="front_left_foot_link"/>
     <axis xyz="0 1 0"/>
     <origin rpy="0 0 0" xyz="0.014 0 -0.109"/>
-    <limit effort="1000.0" lower="-0.1" upper="2.59" velocity="0.5"/>
+    <limit effort="1000.0" lower="-2.59" upper="0.1" velocity="0.5"/>
     <dynamics damping="0.0" friction="0.5"/>
   </joint>
+  <transmission name="front_left_foot_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="front_left_foot">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="front_left_foot_actuator">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
   <joint name="front_left_toe" type="fixed">
     <parent link="front_left_foot_link"/>
     <child link="front_left_toe_link"/>
@@ -310,6 +340,16 @@
     <limit effort="1000.0" lower="-0.548" upper="0.548" velocity="0.7"/>
     <dynamics damping="0.0" friction="0.5"/>
   </joint>
+  <transmission name="front_right_shoulder_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="front_right_shoulder">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="front_right_shoulder_actuator">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
   <joint name="front_right_leg" type="revolute">
     <parent link="front_right_shoulder_link"/>
     <child link="front_right_leg_link"/>
@@ -318,6 +358,16 @@
     <limit effort="1000.0" lower="-2.666" upper="1.548" velocity="0.5"/>
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
+  <transmission name="front_right_leg_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="front_right_leg">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="front_right_leg_actuator">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
   <joint name="front_right_leg_cover_joint" type="fixed">
     <parent link="front_right_leg_link"/>
     <child link="front_right_leg_link_cover"/>
@@ -328,9 +378,19 @@
     <child link="front_right_foot_link"/>
     <axis xyz="0 1 0"/>
     <origin rpy="0 0 0" xyz="0.014 0 -0.109"/>
-    <limit effort="1000.0" lower="-0.1" upper="2.59" velocity="0.5"/>
+    <limit effort="1000.0" lower="-2.59" upper="0.1" velocity="0.5"/>
     <dynamics damping="0.0" friction="0.5"/>
   </joint>
+  <transmission name="front_right_foot_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="front_right_foot">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="front_right_foot_actuator">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
   <joint name="front_right_toe" type="fixed">
     <parent link="front_right_foot_link"/>
     <child link="front_right_toe_link"/>
@@ -433,6 +493,16 @@
     <limit effort="1000.0" lower="-0.548" upper="0.548" velocity="0.7"/>
     <dynamics damping="0.0" friction="0.5"/>
   </joint>
+  <transmission name="rear_left_shoulder_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rear_left_shoulder">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rear_left_shoulder_actuator">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
   <joint name="rear_left_leg" type="revolute">
     <parent link="rear_left_shoulder_link"/>
     <child link="rear_left_leg_link"/>
@@ -441,6 +511,16 @@
     <limit effort="1000.0" lower="-2.666" upper="1.548" velocity="0.5"/>
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
+  <transmission name="rear_left_leg_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rear_left_leg">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rear_left_leg_actuator">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
   <joint name="rear_left_leg_cover_joint" type="fixed">
     <parent link="rear_left_leg_link"/>
     <child link="rear_left_leg_link_cover"/>
@@ -451,9 +531,19 @@
     <child link="rear_left_foot_link"/>
     <axis xyz="0 1 0"/>
     <origin rpy="0 0 0" xyz="0.014 0 -0.109"/>
-    <limit effort="1000.0" lower="-0.1" upper="2.59" velocity="0.5"/>
+    <limit effort="1000.0" lower="-2.59" upper="0.1" velocity="0.5"/>
     <dynamics damping="0.0" friction="0.5"/>
   </joint>
+  <transmission name="rear_left_foot_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rear_left_foot">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rear_left_foot_actuator">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
   <joint name="rear_left_toe" type="fixed">
     <parent link="rear_left_foot_link"/>
     <child link="rear_left_toe_link"/>
@@ -556,6 +646,16 @@
     <limit effort="1000.0" lower="-0.548" upper="0.548" velocity="0.7"/>
     <dynamics damping="0.0" friction="0.5"/>
   </joint>
+  <transmission name="rear_right_shoulder_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rear_right_shoulder">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rear_right_shoulder_actuator">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
   <joint name="rear_right_leg" type="revolute">
     <parent link="rear_right_shoulder_link"/>
     <child link="rear_right_leg_link"/>
@@ -564,6 +664,16 @@
     <limit effort="1000.0" lower="-2.666" upper="1.548" velocity="0.5"/>
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
+  <transmission name="rear_right_leg_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rear_right_leg">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rear_right_leg_actuator">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
   <joint name="rear_right_leg_cover_joint" type="fixed">
     <parent link="rear_right_leg_link"/>
     <child link="rear_right_leg_link_cover"/>
@@ -574,9 +684,19 @@
     <child link="rear_right_foot_link"/>
     <axis xyz="0 1 0"/>
     <origin rpy="0 0 0" xyz="0.014 0 -0.109"/>
-    <limit effort="1000.0" lower="-0.1" upper="2.59" velocity="0.5"/>
+    <limit effort="1000.0" lower="-2.59" upper="0.1" velocity="0.5"/>
     <dynamics damping="0.0" friction="0.5"/>
   </joint>
+  <transmission name="rear_right_foot_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rear_right_foot">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rear_right_foot_actuator">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
   <joint name="rear_right_toe" type="fixed">
     <parent link="rear_right_foot_link"/>
     <child link="rear_right_toe_link"/>
