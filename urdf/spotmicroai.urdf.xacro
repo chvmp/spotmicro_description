@@ -64,9 +64,19 @@
          <child link="${pos}_shoulder_link" />
          <axis xyz="1 0 0" />
          <origin rpy="0 0 0" xyz="${shiftx} ${shifty} 0" />
-         <limit effort="1000.0" lower="-0.548" upper="0.548" velocity="0.7" />
+         <limit effort="1000.0" velocity="0.7" lower="-0.548" upper="0.548"/>
          <dynamics damping="0.0" friction="0.5" />
       </joint>
+      <transmission name="${pos}_shoulder_trans">
+         <type>transmission_interface/SimpleTransmission</type>
+         <joint name="${pos}_shoulder">
+               <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+         </joint>
+         <actuator name="${pos}_shoulder_actuator">
+               <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+               <mechanicalReduction>1</mechanicalReduction>
+         </actuator>
+      </transmission>
    </xacro:macro>
    <xacro:macro name="gen_leg" params="name left">
       <link name="${name}_cover">
@@ -123,9 +133,19 @@
          <child link="${pos}_leg_link" />
          <axis xyz="0 1 0" />
          <origin rpy="0 0 0" xyz="0 ${shift} 0" />
-         <limit effort="1000.0" lower="-2.666" upper="1.548" velocity="0.5" />
+         <limit effort="1000.0" velocity="0.5" lower="-2.666" upper="1.548"/>
          <dynamics damping="0.0" friction="0.0" />
       </joint>
+      <transmission name="${pos}_leg_trans">
+         <type>transmission_interface/SimpleTransmission</type>
+         <joint name="${pos}_leg">
+               <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+         </joint>
+         <actuator name="${pos}_leg_actuator">
+               <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+               <mechanicalReduction>1</mechanicalReduction>
+         </actuator>
+      </transmission>
       <joint name="${pos}_leg_cover_joint" type="fixed">
          <parent link="${pos}_leg_link" />
          <child link="${pos}_leg_link_cover" />
@@ -167,9 +187,19 @@
          <child link="${pos}_foot_link" />
          <axis xyz="0 1 0" />
          <origin rpy="0 0 0" xyz="0.014 0 -${leg_length}" />
-         <limit effort="1000.0" lower="-0.1" upper="2.59" velocity="0.5" />
+         <limit effort="1000.0" velocity="0.5" lower="-2.59" upper="0.1"/>
          <dynamics damping="0.0" friction="0.5" />
       </joint>
+      <transmission name="${pos}_foot_trans">
+         <type>transmission_interface/SimpleTransmission</type>
+         <joint name="${pos}_foot">
+               <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+         </joint>
+         <actuator name="${pos}_foot_actuator">
+               <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+               <mechanicalReduction>1</mechanicalReduction>
+         </actuator>
+      </transmission>
    </xacro:macro>
    <xacro:macro name="gen_toe" params="name">
       <link name="${name}">
