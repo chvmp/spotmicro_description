@@ -3,8 +3,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-import kinematics
-
 
 def draw2D(points):
     """Draw points on 2D
