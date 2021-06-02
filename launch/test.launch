@@ -2,7 +2,7 @@
     <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find spotmicro_description)/urdf/test.urdf.xacro' " />
     <!--arg name="gzangles" default="-J JOINT0 -0.2" / use with paused -->
     <arg name="gzangles" default="" />
-    <arg name="gzpose" default="-z 0.3 -Y 3.14152" />
+    <arg name="gzpose" default="" />
     <arg name="control_config" default="$(find spotmicro_description)/config/test.urdf.gz_controller.yaml" />
     <arg name="gui" default="true"/>
     <arg name="headless" default="false"/>

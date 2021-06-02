@@ -129,27 +129,18 @@ class Spot(RobotModelFromURDF):
         return r
 
     def reset_pose(self):
-        """
-        theta[deg]  |   1    |    2    |    3
-        ------------
-        leg         | 
-        1 (right rear)| 7.5883 | 28.7493 | -29.7695
-        2 (right front)| 11.5735| -33.0804| 100.5692
-        3 (left front)| 11.5735| 33.0804 | -100.569
-        4  (left rear)| 7.5883 | -28.7493| 29.7695
-        """
-        self.front_right_shoulder.joint_angle(np.deg2rad(11.5735))
-        self.front_right_leg.joint_angle(np.deg2rad(-33.0804))
-        self.front_right_foot.joint_angle(np.deg2rad(100.5692))
         self.front_left_shoulder.joint_angle(np.deg2rad(11.5735))
         self.front_left_leg.joint_angle(np.deg2rad(33.0804))
-        # self.front_left_foot.joint_angle(np.deg2rad(-100.569))
-        self.rear_right_shoulder.joint_angle(np.deg2rad(7.5883))
-        self.rear_right_leg.joint_angle(np.deg2rad(28.7493))
-        # self.rear_right_foot.joint_angle(np.deg2rad(-29.7695))
+        self.front_left_foot.joint_angle(np.deg2rad(-100.5692))
+        self.front_right_shoulder.joint_angle(np.deg2rad(11.5735))
+        self.front_right_leg.joint_angle(np.deg2rad(33.0804))
+        self.front_right_foot.joint_angle(np.deg2rad(-100.569))
         self.rear_left_shoulder.joint_angle(np.deg2rad(7.5883))
         self.rear_left_leg.joint_angle(np.deg2rad(-28.7493))
         self.rear_left_foot.joint_angle(np.deg2rad(29.7695))
+        self.rear_right_shoulder.joint_angle(np.deg2rad(7.5883))
+        self.rear_right_leg.joint_angle(np.deg2rad(-28.7493))
+        self.rear_right_foot.joint_angle(np.deg2rad(29.7695))
         return self.angle_vector()
 
 

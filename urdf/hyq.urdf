@@ -28,7 +28,7 @@
         </collision>
     </link>
 
-    <link name="lf_hipassembly">
+    <link name="l_front_hipassembly_link">
         <inertial>
             <origin xyz="0.04263 0.0 0.16931" />
             <mass value="2.93" />
@@ -48,7 +48,7 @@
         </collision>
     </link>
 
-    <link name="lf_upperleg">
+    <link name="l_front_upper_leg_link">
         <inertial>
             <origin xyz="0.15074 -0.02625 0.0" />
             <mass value="2.638" />
@@ -68,7 +68,7 @@
         </collision>
     </link>
 
-    <link name="lf_lowerleg">
+    <link name="l_front_lower_leg_link">
         <inertial>
             <origin xyz="0.1254 4e-05 -0.0001" />
             <mass value="0.881" />
@@ -87,7 +87,7 @@
         </collision>
     </link>
 
-    <link name="lf_foot">
+    <link name="l_front_toe_link">
         <inertial>
             <mass value="0.1" />
             <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
@@ -106,43 +106,43 @@
         </visual>
     </link>
 
-    <joint name="lf_haa_joint" type="revolute">
+    <joint name="l_front_hipassembly_joint" type="revolute">
         <origin rpy="0 1.57079632679 3.14159265359" xyz="0.3735 0.207 0" />
         <parent link="trunk" />
-        <child link="lf_hipassembly" />
+        <child link="l_front_hipassembly_link" />
         <axis xyz="0 0 1" />
         <limit effort="150" lower="-1.2217304764" upper="0.436332312999" velocity="12.0" />
         <dynamics damping="0.1" friction="0" />
         <safety_controller k_position="50" k_velocity="10" soft_lower_limit="-1.2217304764" soft_upper_limit="0.436332312999" />
     </joint>
 
-    <joint name="lf_hfe_joint" type="revolute">
+    <joint name="l_front_upper_leg_joint" type="revolute">
         <origin rpy="1.57079632679 0 0" xyz="0.08 0 0" />
-        <parent link="lf_hipassembly" />
-        <child link="lf_upperleg" />
+        <parent link="l_front_hipassembly_link" />
+        <child link="l_front_upper_leg_link" />
         <axis xyz="0 0 1" />
         <limit effort="150" lower="-0.872664625997" upper="1.2217304764" velocity="12.0" />
         <dynamics damping="0.1" friction="0" />
         <safety_controller k_position="50" k_velocity="10" soft_lower_limit="-0.872664625997" soft_upper_limit="1.2217304764" />
     </joint>
 
-    <joint name="lf_kfe_joint" type="revolute">
+    <joint name="l_front_lower_leg_joint" type="revolute">
         <origin rpy="0 0 0" xyz="0.35 0 0" />
-        <parent link="lf_upperleg" />
-        <child link="lf_lowerleg" />
+        <parent link="l_front_upper_leg_link" />
+        <child link="l_front_lower_leg_link" />
         <axis xyz="0 0 1" />
         <limit effort="150" lower="-2.44346095279" upper="-0.349065850399" velocity="12.0" />
         <dynamics damping="0.1" friction="0" />
         <safety_controller k_position="50" k_velocity="10" soft_lower_limit="-2.44346095279" soft_upper_limit="-0.349065850399" />
     </joint>
 
-    <joint name="lf_foot_joint" type="fixed">
+    <joint name="l_front_toe_joint" type="fixed">
         <origin rpy="1.57079632679 0 -1.57079632679" xyz="0.346 0 0" />
-        <parent link="lf_lowerleg" />
-        <child link="lf_foot" />
+        <parent link="l_front_lower_leg_link" />
+        <child link="l_front_toe_link" />
     </joint>
 
-    <link name="rf_hipassembly">
+    <link name="r_front_hipassembly_link">
         <inertial>
             <origin xyz="0.04263 -0.0 -0.16931" />
             <mass value="2.93" />
@@ -162,7 +162,7 @@
         </collision>
     </link>
 
-    <link name="rf_upperleg">
+    <link name="r_front_upper_leg_link">
         <inertial>
             <origin xyz="0.15074 -0.02625 0.0" />
             <mass value="2.638" />
@@ -182,7 +182,7 @@
         </collision>
     </link>
 
-    <link name="rf_lowerleg">
+    <link name="r_front_lower_leg_link">
         <inertial>
             <origin xyz="0.1254 4e-05 -0.0001" />
             <mass value="0.881" />
@@ -201,7 +201,7 @@
         </collision>
     </link>
 
-    <link name="rf_foot">
+    <link name="r_front_toe_link">
         <inertial>
             <mass value="0.1" />
             <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
@@ -220,43 +220,43 @@
         </visual>
     </link>
 
-    <joint name="rf_haa_joint" type="revolute">
+    <joint name="r_front_hipassembly_joint" type="revolute">
         <origin rpy="0 1.57079632679 0" xyz="0.3735 -0.207 0" />
         <parent link="trunk" />
-        <child link="rf_hipassembly" />
+        <child link="r_front_hipassembly_link" />
         <axis xyz="0 0 1" />
         <limit effort="150" lower="-1.2217304764" upper="0.436332312999" velocity="12.0" />
         <dynamics damping="0.1" friction="0" />
         <safety_controller k_position="50" k_velocity="10" soft_lower_limit="-1.2217304764" soft_upper_limit="0.436332312999" />
     </joint>
 
-    <joint name="rf_hfe_joint" type="revolute">
+    <joint name="r_front_upper_leg_joint" type="revolute">
         <origin rpy="-1.57079632679 0 0" xyz="0.08 0 0" />
-        <parent link="rf_hipassembly" />
-        <child link="rf_upperleg" />
+        <parent link="r_front_hipassembly_link" />
+        <child link="r_front_upper_leg_link" />
         <axis xyz="0 0 1" />
         <limit effort="150" lower="-0.872664625997" upper="1.2217304764" velocity="12.0" />
         <dynamics damping="0.1" friction="0" />
         <safety_controller k_position="50" k_velocity="10" soft_lower_limit="-0.872664625997" soft_upper_limit="1.2217304764" />
     </joint>
 
-    <joint name="rf_kfe_joint" type="revolute">
+    <joint name="r_front_lower_leg_joint" type="revolute">
         <origin rpy="0 0 0" xyz="0.35 0 0" />
-        <parent link="rf_upperleg" />
-        <child link="rf_lowerleg" />
+        <parent link="r_front_upper_leg_link" />
+        <child link="r_front_lower_leg_link" />
         <axis xyz="0 0 1" />
         <limit effort="150" lower="-2.44346095279" upper="-0.349065850399" velocity="12.0" />
         <dynamics damping="0.1" friction="0" />
         <safety_controller k_position="50" k_velocity="10" soft_lower_limit="-2.44346095279" soft_upper_limit="-0.349065850399" />
     </joint>
 
-    <joint name="rf_foot_joint" type="fixed">
+    <joint name="r_front_toe_joint" type="fixed">
         <origin rpy="1.57079632679 0 -1.57079632679" xyz="0.346 0 0" />
-        <parent link="rf_lowerleg" />
-        <child link="rf_foot" />
+        <parent link="r_front_lower_leg_link" />
+        <child link="r_front_toe_link" />
     </joint>
 
-    <link name="lh_hipassembly">
+    <link name="l_rear_hipassembly_link">
         <inertial>
             <origin xyz="0.04263 -0.0 -0.16931" />
             <mass value="2.93" />
@@ -276,7 +276,7 @@
         </collision>
     </link>
 
-    <link name="lh_upperleg">
+    <link name="l_rear_upper_leg_link">
         <inertial>
             <origin xyz="0.15074 0.02625 0.0" />
             <mass value="2.638" />
@@ -296,7 +296,7 @@
         </collision>
     </link>
 
-    <link name="lh_lowerleg">
+    <link name="l_rear_lower_leg_link">
         <inertial>
             <origin xyz="0.1254 -4e-05 0.0001" />
             <mass value="0.881" />
@@ -315,7 +315,7 @@
         </collision>
     </link>
 
-    <link name="lh_foot">
+    <link name="l_rear_toe_link">
         <inertial>
             <mass value="0.1" />
             <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
@@ -334,43 +334,43 @@
         </visual>
     </link>
 
-    <joint name="lh_haa_joint" type="revolute">
+    <joint name="l_rear_hipasembly_joint" type="revolute">
         <origin rpy="0 1.57079632679 3.14159265359" xyz="-0.3735 0.207 0" />
         <parent link="trunk" />
-        <child link="lh_hipassembly" />
+        <child link="l_rear_hipassembly_link" />
         <axis xyz="0 0 1" />
         <limit effort="150" lower="-1.2217304764" upper="0.436332312999" velocity="12.0" />
         <dynamics damping="0.1" friction="0" />
         <safety_controller k_position="50" k_velocity="10" soft_lower_limit="-1.2217304764" soft_upper_limit="0.436332312999" />
     </joint>
 
-    <joint name="lh_hfe_joint" type="revolute">
+    <joint name="l_rear_upper_leg_joint" type="revolute">
         <origin rpy="1.57079632679 0 0" xyz="0.08 0 0" />
-        <parent link="lh_hipassembly" />
-        <child link="lh_upperleg" />
+        <parent link="l_rear_hipassembly_link" />
+        <child link="l_rear_upper_leg_link" />
         <axis xyz="0 0 1" />
         <limit effort="150" lower="-1.2217304764" upper="0.872664625997" velocity="12.0" />
         <dynamics damping="0.1" friction="0" />
         <safety_controller k_position="50" k_velocity="10" soft_lower_limit="-1.2217304764" soft_upper_limit="0.872664625997" />
     </joint>
 
-    <joint name="lh_kfe_joint" type="revolute">
+    <joint name="l_rear_lower_leg_joint" type="revolute">
         <origin rpy="0 0 0" xyz="0.35 0 0" />
-        <parent link="lh_upperleg" />
-        <child link="lh_lowerleg" />
+        <parent link="l_rear_upper_leg_link" />
+        <child link="l_rear_lower_leg_link" />
         <axis xyz="0 0 1" />
         <limit effort="150" lower="0.349065850399" upper="2.44346095279" velocity="12.0" />
         <dynamics damping="0.1" friction="0" />
         <safety_controller k_position="50" k_velocity="10" soft_lower_limit="0.349065850399" soft_upper_limit="2.44346095279" />
     </joint>
 
-    <joint name="lh_foot_joint" type="fixed">
+    <joint name="l_rear_toe_joint" type="fixed">
         <origin rpy="1.57079632679 0 -1.57079632679" xyz="0.346 0 0" />
-        <parent link="lh_lowerleg" />
-        <child link="lh_foot" />
+        <parent link="l_rear_lower_leg_link" />
+        <child link="l_rear_toe_link" />
     </joint>
 
-    <link name="rh_hipassembly">
+    <link name="r_rear_hipassembly_link">
         <inertial>
             <origin xyz="0.04263 0.0 0.16931" />
             <mass value="2.93" />
@@ -390,7 +390,7 @@
         </collision>
     </link>
 
-    <link name="rh_upperleg">
+    <link name="r_rear_upper_leg_link">
         <inertial>
             <origin xyz="0.15074 0.02625 0.0" />
             <mass value="2.638" />
@@ -410,7 +410,7 @@
         </collision>
     </link>
 
-    <link name="rh_lowerleg">
+    <link name="r_rear_lower_leg_link">
         <inertial>
             <origin xyz="0.1254 -4e-05 0.0001" />
             <mass value="0.881" />
@@ -429,7 +429,7 @@
         </collision>
     </link>
 
-    <link name="rh_foot">
+    <link name="r_rear_toe_link">
         <inertial>
             <mass value="0.1" />
             <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
@@ -448,43 +448,43 @@
         </visual>
     </link>
 
-    <joint name="rh_haa_joint" type="revolute">
+    <joint name="r_rear_hipassembly_joint" type="revolute">
         <origin rpy="0 1.57079632679 0" xyz="-0.3735 -0.207 0" />
         <parent link="trunk" />
-        <child link="rh_hipassembly" />
+        <child link="r_rear_hipassembly_link" />
         <axis xyz="0 0 1" />
         <limit effort="150" lower="-1.2217304764" upper="0.436332312999" velocity="12.0" />
         <dynamics damping="0.1" friction="0" />
         <safety_controller k_position="50" k_velocity="10" soft_lower_limit="-1.2217304764" soft_upper_limit="0.436332312999" />
     </joint>
 
-    <joint name="rh_hfe_joint" type="revolute">
+    <joint name="r_rear_upper_leg_joint" type="revolute">
         <origin rpy="-1.57079632679 0 0" xyz="0.08 0 0" />
-        <parent link="rh_hipassembly" />
-        <child link="rh_upperleg" />
+        <parent link="r_rear_hipassembly_link" />
+        <child link="r_rear_upper_leg_link" />
         <axis xyz="0 0 1" />
         <limit effort="150" lower="-1.2217304764" upper="0.872664625997" velocity="12.0" />
         <dynamics damping="0.1" friction="0" />
         <safety_controller k_position="50" k_velocity="10" soft_lower_limit="-1.2217304764" soft_upper_limit="0.872664625997" />
     </joint>
 
-    <joint name="rh_kfe_joint" type="revolute">
+    <joint name="r_rear_lower_leg_joint" type="revolute">
         <origin rpy="0 0 0" xyz="0.35 0 0" />
-        <parent link="rh_upperleg" />
-        <child link="rh_lowerleg" />
+        <parent link="r_rear_upper_leg_link" />
+        <child link="r_rear_lower_leg_link" />
         <axis xyz="0 0 1" />
         <limit effort="150" lower="0.349065850399" upper="2.44346095279" velocity="12.0" />
         <dynamics damping="0.1" friction="0" />
         <safety_controller k_position="50" k_velocity="10" soft_lower_limit="0.349065850399" soft_upper_limit="2.44346095279" />
     </joint>
 
-    <joint name="rh_foot_joint" type="fixed">
+    <joint name="r_rear_toe_joint" type="fixed">
         <origin rpy="1.57079632679 0 -1.57079632679" xyz="0.346 0 0" />
-        <parent link="rh_lowerleg" />
-        <child link="rh_foot" />
+        <parent link="r_rear_lower_leg_link" />
+        <child link="r_rear_toe_link" />
     </joint>
 
-    <link name="hokuyo_link">
+    <link name="hokuyo_frame">
         <inertial>
             <mass value="1e-5" />
             <origin xyz="0 0 0" rpy="0 0 0" />
@@ -508,7 +508,7 @@
         <axis xyz="0 1 0" />
         <origin rpy="0 0 0" xyz="0.3735 0 0.14" />
         <parent link="trunk" />
-        <child link="hokuyo_link" />
+        <child link="hokuyo_frame" />
     </joint>
 
     <transmission name="trans_lf_haa_joint">
