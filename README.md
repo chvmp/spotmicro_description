@@ -24,3 +24,11 @@ You can view the model on pybullet by runnning:
 ## Task list
 - [ ] walk
 - [ ] link with recgnition
+```
+roslaunch spotmicro_description view_urdf.launch
+```
+## Testing
+
+You can modify the Xacro description and see the changes in the UDF file with this command:
+
+    rosrun xacro xacro spotmicroai.urdf.xacro > spotmicroai.urdf
